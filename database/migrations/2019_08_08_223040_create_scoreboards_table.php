@@ -15,6 +15,7 @@ class CreateScoreboardsTable extends Migration
     {
         Schema::create('scoreboards', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('score');
             $table->timestamps();
         });
     }
@@ -26,6 +27,7 @@ class CreateScoreboardsTable extends Migration
      */
     public function down()
     {
+
         Schema::dropIfExists('scoreboards');
     }
 }

@@ -4,82 +4,54 @@ namespace App\Http\Controllers;
 
 use App\Scoreboard;
 use Illuminate\Http\Request;
+use App\Http\Resources\Scoreboard as ScoreboardResource;
 
 class ScoreboardController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $rankings = Scoreboard::orderBy('score', 'desc')->take(5)->get();
+        return ScoreboardResource::collection($rankings);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function Scoreboard(Request $request)
     {
-        //
+        $rankings = Scoreboard::orderBy('score', 'desc')->where('exam_id', $request->input('exam_id'))->take(5)->get();
+        return ScoreboardResource::collection($rankings);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    public function create()
+    { }
     public function store(Request $request)
     {
-        //
+        $Scoreboard = new Scoreboard();
+        $Scoreboard->score = $request->input('score');
+        $Scoreboard->user_id = $request->input('user_id');
+        if ($Scoreboard->save()) {
+            return new ScoreboardResource($Scoreboard);
+        }
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Scoreboard  $scoreboard
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Scoreboard $scoreboard)
+    public function show(Request $request)
     {
-        //
+        $Scoreboards = Scoreboard::where('user_id', $request->input('user_id'))->get();
+        return ScoreboardResource::collection($Scoreboards);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Scoreboard  $scoreboard
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Scoreboard $scoreboard)
+    public function edit(Request $request)
     {
-        //
+        $Scoreboard = Scoreboard::find($request->input('user_id'));
+        $Scoreboard->score = $request->input('score');
+        if ($Scoreboard->save()) {
+            return new ScoreboardResource($Scoreboard);
+        }
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Scoreboard  $scoreboard
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Scoreboard $scoreboard)
+    public function update(Request $request)
     {
-        //
+        $Scoreboards = Scoreboard::where('user_id', $request->input('user_id'))->get();
+        foreach ($Scoreboards as $Scoreboard) {
+            $Scoreboard->score = $request->input('score');
+            if ($Scoreboard->save()) {
+                return new ScoreboardResource($Scoreboard);
+            }
+        }
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Scoreboard  $scoreboard
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Scoreboard $scoreboard)
-    {
-        //
-    }
+    public function destroy(Scoreboard $Scoreboard)
+    { }
 }

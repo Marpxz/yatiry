@@ -8,7 +8,8 @@ class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     * USER_TYPE 3 = STUDENT, 5 = TUTOR, 10 = ADMIN
+
      * @return void
      */
     public function up()
@@ -16,6 +17,8 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('lastname');
+            $table->integer('user_type')->default(3);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
