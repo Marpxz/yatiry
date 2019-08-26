@@ -36,6 +36,7 @@ class PassportController extends Controller
             'password' => 'required|string|confirmed',
             'course_id' => 'required',
             'college_id' => 'required',
+            'avatar' => 'required'
         ]);
         $user = new User([
             'name' => $request->name,
@@ -44,6 +45,7 @@ class PassportController extends Controller
             'lastname' => $request->lastname,
             'course_id' => $request->course_id,
             'college_id' => $request->college_id,
+            'avatar' => $request->avatar,
             'user_type' => 3,
         ]);
         $user->save();

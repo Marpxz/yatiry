@@ -18,4 +18,8 @@ class College extends Model
     {
         return $this->hasMany(Course::class);
     }
+    public function scoreboards()
+    {
+        return $this->hasMany(Scoreboard::class);
+    }
 }

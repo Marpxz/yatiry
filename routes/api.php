@@ -23,9 +23,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => 'auth:api'], function () {
 
-    Route::post('showleaderboard', 'LeaderboardController@show');
-    Route::put('leaderboardupdate', 'LeaderboardController@update');
-    Route::post('leaderboardstore', 'LeaderboardController@store');
-    Route::get('ranking', 'LeaderboardController@index');
-    Route::post('leaderboard', 'LeaderboardController@leaderboard');
+    Route::post('showscoreboard', 'ScoreboardController@show');
+    Route::put('scoreboardedit', 'ScoreboardController@edit');
+    Route::post('scoreboardstore', 'ScoreboardController@store');
+    Route::post('scoreboard', 'ScoreboardController@Scoreboard');
 });

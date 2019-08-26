@@ -16,6 +16,10 @@ class ScoredboardAddForeignColumn extends Migration
         Schema::table('scoreboards', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('college_id');
+            $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade');
+            // $table->unsignedBigInteger('college_id');
+            // $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade');
         });
     }
 
@@ -29,6 +33,8 @@ class ScoredboardAddForeignColumn extends Migration
         Schema::table('scoreboards', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
             $table->dropColumn('user_id');
+            // $table->dropForeign(['college_id']);
+            // $table->dropColumn('college_id');
         });
     }
 }

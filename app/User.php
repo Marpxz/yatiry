@@ -12,7 +12,7 @@ class User extends Authenticatable
     use HasApiTokens, Notifiable;
 
     protected $fillable = [
-        'name', 'lastname', 'email', 'password', 'user_type', 'college_id', 'course_id'
+        'name', 'lastname', 'email', 'password', 'user_type', 'college_id', 'course_id', 'avatar'
     ];
 
 
@@ -32,5 +32,9 @@ class User extends Authenticatable
     public function course()
     {
         return $this->belongsTo(Course::class);
+    }
+    public function scoreboard()
+    {
+        return $this->hasOne(Scoreboard::class);
     }
 }
