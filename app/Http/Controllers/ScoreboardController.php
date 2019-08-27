@@ -35,8 +35,13 @@ class ScoreboardController extends Controller
     }
     public function show(Request $request)
     {
-        $Scoreboard = Scoreboard::find($request->input('user_id'));
-        return new ScoreboardResource($Scoreboard);
+        if ($Scoreboard = Scoreboard::find($request->input('user_id'))) {
+            return new ScoreboardResource($Scoreboard);
+        } else {
+            return response()->json([
+                'message' => 'No existe registro de este jugador'
+            ], 401);
+        }
     }
     public function edit(Request $request)
     {
