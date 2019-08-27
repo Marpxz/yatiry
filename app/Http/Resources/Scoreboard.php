@@ -14,6 +14,10 @@ class Scoreboard extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'name' => $this->user->name . " " . $this->user->lastname,
+            'course' => $this->user->course->level . " " . $this->user->course->letter,
+            'score' => $this->score,
+        ];
     }
 }

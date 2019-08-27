@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\College as CollegeResource;
 use App\Http\Resources\Course as CourseResource;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
 
 class PassportController extends Controller
 {
@@ -29,7 +30,7 @@ class PassportController extends Controller
     }
     public function signup(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required|string',
             'lastname' => 'required|string',
             'email' => 'required|string|email|unique:users',
@@ -38,6 +39,10 @@ class PassportController extends Controller
             'college_id' => 'required',
             'avatar' => 'required'
         ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 200);
+        }
         $user = new User([
             'name' => $request->name,
             'email' => $request->email,
@@ -66,11 +71,16 @@ class PassportController extends Controller
      */
     public function login(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'email' => 'required|string|email',
             'password' => 'required|string',
             'remember_me' => 'boolean'
         ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 200);
+        }
+
         $credentials = request(['email', 'password']);
         if (!Auth::attempt($credentials))
             return response()->json([

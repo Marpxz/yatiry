@@ -18,7 +18,7 @@ class ScoreboardController extends Controller
     {
         $college = College::find($request->college_id);
         $scores = Scoreboard::where('college_id', $request->college_id);
-        $rankings = $scores->orderBy('score', 'desc')->take(5)->get();
+        $rankings = $scores->orderBy('score', 'desc')->take(10)->get();
         return ScoreboardResource::collection($rankings);
     }
     public function create()
