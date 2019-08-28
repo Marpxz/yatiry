@@ -40,7 +40,7 @@ class ScoreboardController extends Controller
         } else {
             return response()->json([
                 'message' => 'No existe registro de este jugador'
-            ], 401);
+            ], 200);
         }
     }
     public function edit(Request $request)
