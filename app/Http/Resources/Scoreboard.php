@@ -18,6 +18,7 @@ class Scoreboard extends JsonResource
             'name' => $this->user->name . " " . $this->user->lastname,
             'course' => $this->user->course->level . " " . $this->user->course->letter,
             'score' => $this->score,
+            'avatar' => $this->user->avatar
         ];
     }
 }
