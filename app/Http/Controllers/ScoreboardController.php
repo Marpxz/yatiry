@@ -35,7 +35,7 @@ class ScoreboardController extends Controller
     }
     public function show(Request $request)
     {
-        if ($Scoreboard = Scoreboard::find($request->input('user_id'))) {
+        if ($Scoreboard = Scoreboard::where('user_id', $request->input('user_id'))->first()) {
             return new ScoreboardResource($Scoreboard);
         } else {
             return response()->json([
@@ -45,7 +45,7 @@ class ScoreboardController extends Controller
     }
     public function edit(Request $request)
     {
-        $Scoreboard = Scoreboard::find($request->input('user_id'));
+        $Scoreboard =  Scoreboard::where('user_id', $request->input('user_id'))->first();
         $Scoreboard->score = $request->input('score');
         if ($Scoreboard->save()) {
             return new ScoreboardResource($Scoreboard);
