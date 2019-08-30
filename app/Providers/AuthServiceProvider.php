@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Yatiry\Providers;
 
 use Laravel\Passport\Passport;
 use Illuminate\Support\Facades\Gate;
@@ -14,7 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Model' => 'App\Policies\ModelPolicy',
+        // 'Yatiry\Model' => 'Yatiry\Policies\ModelPolicy',
     ];
 
     /**

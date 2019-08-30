@@ -2,8 +2,8 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Course;
-use App\Model;
+use Yatiry\Course;
+use Yatiry\Model;
 use Faker\Generator as Faker;
 
 $factory->define(Course::class, function (Faker $faker) {

@@ -1,15 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Yatiry\Http\Controllers;
 
-use App\College;
-use App\User;
+use Yatiry\College;
+use Yatiry\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Resources\College as CollegeResource;
-use App\Http\Resources\Course as CourseResource;
+use Yatiry\Http\Resources\College as CollegeResource;
+use Yatiry\Http\Resources\Course as CourseResource;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
+use Yatiry\Notifications\SignupActivate;
+
 
 class PassportController extends Controller
 {
@@ -51,9 +53,11 @@ class PassportController extends Controller
             'course_id' => $request->course_id,
             'college_id' => $request->college_id,
             'avatar' => $request->avatar,
+            'activation_token' => str_random(60),
             'user_type' => 3,
         ]);
         $user->save();
+        $user->notify(new SignupActivate($user));
         return response()->json([
             'message' => 'Successfully created user!'
         ], 201);
@@ -82,6 +86,7 @@ class PassportController extends Controller
         }
 
         $credentials = request(['email', 'password']);
+        $credentials['active'] = 1;
         if (!Auth::attempt($credentials))
             return response()->json([
                 'message' => 'Unauthorized'
@@ -122,5 +127,18 @@ class PassportController extends Controller
     public function user(Request $request)
     {
         return response()->json($request->user());
+    }
+    public function signupActivate($token)
+    {
+        $user = User::where('activation_token', $token)->first();
+        if (!$user) {
+            return response()->json([
+                'message' => 'El token es invalido.'
+            ], 404);
+        }
+        $user->active = true;
+        $user->activation_token = '';
+        $user->save();
+        return $user;
     }
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Yatiry\Http\Controllers;
 
-use App\College;
-use App\Scoreboard;
+use Yatiry\College;
+use Yatiry\Scoreboard;
 use Illuminate\Http\Request;
-use App\Http\Resources\Scoreboard as ScoreboardResource;
+use Yatiry\Http\Resources\Scoreboard as ScoreboardResource;
 
 class ScoreboardController extends Controller
 {

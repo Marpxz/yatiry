@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Yatiry;
 
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -12,12 +12,12 @@ class User extends Authenticatable
     use HasApiTokens, Notifiable;
 
     protected $fillable = [
-        'name', 'lastname', 'email', 'password', 'user_type', 'college_id', 'course_id', 'avatar'
+        'name', 'lastname', 'email', 'password', 'user_type', 'college_id', 'course_id', 'avatar', 'active', 'activation_token'
     ];
 
 
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'activation_token'
     ];
 
 

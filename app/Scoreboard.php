@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Yatiry;
 
 use Illuminate\Database\Eloquent\Model;
 

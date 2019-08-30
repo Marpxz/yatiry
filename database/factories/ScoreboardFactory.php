@@ -2,8 +2,8 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Model;
-use App\Scoreboard;
+use Yatiry\Model;
+use Yatiry\Scoreboard;
 use Faker\Generator as Faker;
 
 $factory->define(Scoreboard::class, function (Faker $faker) {
