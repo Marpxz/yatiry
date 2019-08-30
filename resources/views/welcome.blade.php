@@ -43,6 +43,11 @@
     </div>
     <!--End Preloader-->
     <!--start header-->
+    @isset($message)
+    <div class="alert alert-success">
+    <strong>{{@message}}</strong>
+    </div>
+    @endif
     <header id="header">
         <div class="container">
             <nav class="navbar navbar-expand-lg">

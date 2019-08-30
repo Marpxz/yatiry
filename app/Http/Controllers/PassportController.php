@@ -139,6 +139,7 @@ class PassportController extends Controller
         $user->active = true;
         $user->activation_token = '';
         $user->save();
-        return $user;
+        $message = "Cuenta activada, Gracias!";
+        return Redirect::to('welome', compact('message'));
     }
 }
