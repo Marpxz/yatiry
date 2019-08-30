@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Yatiry\Http\Resources\College as CollegeResource;
 use Yatiry\Http\Resources\Course as CourseResource;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Yatiry\Notifications\SignupActivate;
 
