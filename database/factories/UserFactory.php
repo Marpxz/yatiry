@@ -18,5 +18,7 @@ $factory->define(User::class, function (Faker $faker) {
         'user_type' => 3, // 3 = alumno, 5 = tutor, 10 = admin
         'course_id' => $faker->numberBetween(1, 3),
         'college_id' => 954065,
+        'active' => 1,
+        'activation_token' =>  str_random(10)
     ];
 });
