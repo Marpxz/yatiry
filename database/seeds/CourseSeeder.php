@@ -1,7 +1,7 @@
 <?php
 
-use App\Course;
 use Illuminate\Database\Seeder;
+use Yatiry\Course;
 
 class CourseSeeder extends Seeder
 {

@@ -1,8 +1,9 @@
 <?php
 
-use App\Scoreboard;
-use App\User;
+
 use Illuminate\Database\Seeder;
+use Yatiry\Scoreboard;
+use Yatiry\User;
 
 class UserSeeder extends Seeder
 {

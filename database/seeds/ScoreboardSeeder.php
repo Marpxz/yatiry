@@ -1,7 +1,7 @@
 <?php
 
-use App\Scoreboard;
 use Illuminate\Database\Seeder;
+use Yatiry\Scoreboard;
 
 class ScoreboardSeeder extends Seeder
 {
