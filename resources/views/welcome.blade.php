@@ -43,11 +43,7 @@
     </div>
     <!--End Preloader-->
     <!--start header-->
-    @isset($message)
-    <div class="alert alert-success">
-    <strong>{{@message}}</strong>
-    </div>
-    @endif
+    
     <header id="header">
         <div class="container">
             <nav class="navbar navbar-expand-lg">
@@ -1113,6 +1109,7 @@
             </div>
         </div>
     </footer>
+    
     <!--end footer-->
     <!--jQuery js-->
     <script src="assets/js/jquery-3.3.1.min.js"></script>

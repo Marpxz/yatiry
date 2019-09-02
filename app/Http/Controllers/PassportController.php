@@ -140,7 +140,6 @@ class PassportController extends Controller
         $user->active = true;
         $user->activation_token = '';
         $user->save();
-        $message = "Cuenta activada, Gracias!";
-        return redirect('/')->with('message', 'Cuenta activada, Gracias!');
+        return "Cuenta activada con éxito!";
     }
 }
