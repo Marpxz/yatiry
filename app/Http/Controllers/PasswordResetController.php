@@ -3,7 +3,9 @@
 namespace Yatiry\Http\Controllers;
 
 use Carbon\Carbon;
+use Error;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Yatiry\Notifications\PasswordResetRequest;
 use Yatiry\Notifications\PasswordResetSuccess;
 use Yatiry\PasswordReset;
@@ -19,9 +21,12 @@ class PasswordResetController extends Controller
      */
     public function create(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'email' => 'required|string|email',
         ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 200);
+        }
         $user = User::where('email', $request->email)->first();
         if (!$user)
             return response()->json([
@@ -63,7 +68,7 @@ class PasswordResetController extends Controller
                 'message' => 'Este token es invalido para restablecer tu contraseña.'
             ], 404);
         }
-        return response()->json($passwordReset);
+        return view('auth.passwords.reset', compact('passwordReset'));
     }
     /**
      * Reset password
@@ -77,7 +82,7 @@ class PasswordResetController extends Controller
      */
     public function reset(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'email' => 'required|string|email',
             'password' => 'required|string|confirmed',
             'token' => 'required|string'
@@ -99,6 +104,7 @@ class PasswordResetController extends Controller
         $user->save();
         $passwordReset->delete();
         $user->notify(new PasswordResetSuccess($passwordReset));
-        return response()->json($user);
+        // return response()->json($user);
+        return "Contraseña cambiada con éxito!";
     }
 }

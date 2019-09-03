@@ -29,14 +29,11 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('scoreboard', 'ScoreboardController@Scoreboard');
 });
 Route::get('signup/activate/{token}', 'PassportController@signupActivate');
-// Route::post('create', 'PasswordResetController@create');
-// Route::get('find/{token}', 'PasswordResetController@find');
-// Route::post('reset', 'PasswordResetController@reset');
+
 Route::group([
-    'middleware' => 'api',
     'prefix' => 'password'
 ], function () {
     Route::post('create', 'PasswordResetController@create');
     Route::get('find/{token}', 'PasswordResetController@find');
-    Route::post('reset', 'PasswordResetController@reset');
+    Route::post('reset', 'PasswordResetController@reset')->name('recovery');
 });
