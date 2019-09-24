@@ -295,7 +295,7 @@ p {
 ---------------------------------------------------------------------------------------*/
 
 #home-area.bg-1 {
-    background-image: url(../images/home-bg-1.png);
+    background-image: url(../images/home-bg-12.png);
     background-repeat: no-repeat;
     background-position: bottom;
     margin-bottom: 10px
@@ -765,7 +765,7 @@ p {
 }
 
 .video-cont {
-    background-image: url(../images/video-bg.png);
+    background-image: url(../images/video-bg1.png);
     background-repeat: no-repeat;
     background-position: center;
     width: 708px;
@@ -1124,11 +1124,11 @@ p {
     padding: 112px 0 410px;
     background-repeat: no-repeat;
     background-position: bottom right;
-    background-image: url(../images/how-work-bg-1.png)
+    background-image: url(../images/how-work-bg-111.png)
 }
 
 #how-work-area.bg-1 {
-    background-image: url(../images/how-work-bg-1.png)
+    background-image: url(../images/how-work-bg-111.png)
 }
 
 #how-work-area.bg-2 {
@@ -2272,6 +2272,10 @@ p {
 #footer.bg-2 {
     background-image: url(../images/footer-bg-2.png);
 }
+#footer.bg-3 {
+    background-image: url(../images/footer-bg-3.png);
+}
+
 
 .get-started {
     border-radius: 5px;
