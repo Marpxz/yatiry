@@ -48,7 +48,7 @@
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
                     <!-- Logo -->
-                    <a class="logo" href="#"><img src="assets/images/yatirylogo1.png" alt="logo"></a>
+                    <a class="logo" href="#"><img src="assets/images/Yatirylogo1.png" alt="logo"></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon-bar"><i class="icofont-navigation-menu"></i></span>
                     </button>
